@@ -1,0 +1,21 @@
+<form action="/admin/uzytkownik/login" method="post">
+    <table>
+        <tr>
+            <th>E-mail</th>
+            <td><input type="email" name="email" value="<?=$this->email?>" /></td>
+        </tr>
+        <tr>
+            <th>Hasło</th>
+            <td><input type="password" name="haslo" value="okon" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Zaloguj" />
+            </td>
+        </tr>
+    </table>
+
+    <?php if ($this->result):?>
+        <p style="color:red">Dane uwierzytelniające nieprawidłowe.</p>
+    <?php endif;?>
+</form>
