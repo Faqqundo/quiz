@@ -45,7 +45,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         Zend_Loader_AutoloaderFactory::factory(array(
             'Zend_Loader_StandardAutoloader' => array(
                 'namespaces' => array(
-                    'Model' => APPLICATION_PATH . DIRECTORY_SEPARATOR . 'models'
+                    'Model' => APPLICATION_PATH . DIRECTORY_SEPARATOR . 'models',
+                    'Table' => APPLICATION_PATH . DIRECTORY_SEPARATOR . 'orm' . DIRECTORY_SEPARATOR . 'Table',
+                    'Row'   => APPLICATION_PATH . DIRECTORY_SEPARATOR . 'orm' . DIRECTORY_SEPARATOR . 'Row'
                 ))            
         ));
         
@@ -65,6 +67,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         
         Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
         Zend_Registry::set('db_adapter', $dbAdapter);
+
+        $dbAdapter->setFetchMode(Zend_Db::FETCH_OBJ);
 
         return $dbAdapter;
     }

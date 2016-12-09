@@ -36,7 +36,7 @@ class QuizController extends BaseController
      */
     public function listaAction()
     {
-
+        $this->view->quizes = Table\Quiz::getInstance()->listaAktywnych();        
     }
 
     /**

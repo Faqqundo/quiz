@@ -1,0 +1,32 @@
+<h1>Lista quizów</h1>
+
+<table id="quizes">
+    <thead>
+        <tr>
+            <th>Lp</th>
+            <th>Nazwa</th>
+            <th>
+                <input type="button" class="dodaj" value="Dodaj" />
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if ($this->quizes): ?>
+            <?php $lp=1; ?>
+            <?php foreach($this->quizes as $quiz): ?>
+                <tr data-id_quizu="<?=$quiz->id?>">
+                    <td><?=$lp++?></td>
+                    <td><?=$quiz->nazwa?></td>
+                    <td>
+                        <input type="button" class="edytuj" value="Edytuj" />
+                        <input type="button" class="usun" value="Usuń" />
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="3">Brak aktywnych quizów</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
