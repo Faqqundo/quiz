@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+
+        <?php foreach ($this->styles as $style): ?>
+<?php       ?><link type="text/css" rel="stylesheet" media="screen" href="<?=$style?>.css" />
+        <?php endforeach; ?>
+
+        <?php foreach ($this->scripts as $script): ?>
+<?php       ?><script type="text/javascript" src="<?=$script?>.js"></script>
+        <?php endforeach; ?>
+
+        <script type="text/javascript">
+            // <![CDATA[
+            <?php foreach ($this->scriptVars as $sVName => $sVValue): ?>
+<?php       ?>var <?=$sVName?> = <?=json_encode($sVValue)?>;
+            <?php endforeach; ?>
+<?php       ?>// ]]>
+        </script>
+
+        <title>Quiz</title>
+    </head>
+    <body>
+        <?=$this->layout()->content?>
+    </body>
+</html>
