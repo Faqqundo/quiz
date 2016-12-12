@@ -6,29 +6,29 @@
  *
  */
 
-namespace Table;
+namespace Table\Quiz;
 
 use Zend_Db_Table;
 
 /**
- * Odzwierciedlenie tabeli listy quizów
+ * Odzwierciedlenie tabeli listy pytań quizu
  *
  *
  * PHP version 7.0
  *
  *
  * @category  PHP
- * @table     quiz
+ * @table     quiz_pytania
  * @package   Quiz
  * @author    Mariusz Wintoch <biuro@informatio.pl>
  * @copyright 2016 (c) Informatio, Mariusz Wintoch
  */
-class Quiz extends Zend_Db_Table
+class Pytania extends Zend_Db_Table
 {    
     /**
      * Instancja singletonu
      *
-     * @var Quiz
+     * @var Pytania
      */
     protected static $instance;
 
@@ -39,31 +39,20 @@ class Quiz extends Zend_Db_Table
     public function __construct()
     {
         parent::__construct(array(
-            Zend_Db_Table::NAME => 'quiz',
-            Zend_Db_Table::ROW_CLASS => '\Row\Quiz'
+            Zend_Db_Table::NAME => 'quiz_pytania',
+            Zend_Db_Table::ROW_CLASS => '\Row\Quiz\Pytanie'
         ));
-    }
-
-    /**
-     * Zwraca listę przyszłych posiedzeń
-     *
-     * @return \Row\Quiz[]
-     */
-    public function listaAktywnych() {
-        return $this->fetchAll(array(
-            'aktywny' => 1
-        ));
-    }    
+    } 
 
     /**
      * Zwraca instancje singletonu
      *
-     * @return Quiz
+     * @return Pytania
      */
     public static function getInstance()
     {
-        if (!self::$instance instanceof Quiz) {
-            self::$instance = new Quiz();
+        if (!self::$instance instanceof Pytania) {
+            self::$instance = new Pytania();
         }
 
         return self::$instance;
