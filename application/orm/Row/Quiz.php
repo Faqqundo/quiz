@@ -30,5 +30,18 @@ use Zend_Db_Table_Row;
  */
 class Quiz extends Zend_Db_Table_Row
 {
-    
+
+    /**
+     * Zwraca listę pytań quizu
+     *
+     * @return Quiz\Pytanie[]
+     */
+    public function getPytania()
+    {
+        $pytania = \Table\Quiz\Pytania::getInstance()->fetchAll(array(
+            'id_quizu = ?' => $this->id
+        ));
+
+        return $pytania;
+    }
 }

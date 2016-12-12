@@ -36,7 +36,9 @@ class QuizController extends BaseController
      */
     public function listaAction()
     {
-        $this->view->quizes = Table\Quiz::getInstance()->listaAktywnych();        
+        $this->view->quizes = Table\Quiz::getInstance()->listaAktywnych();
+
+        $this->addScript('/scripts/quiz/lista');
     }
 
     /**
@@ -45,7 +47,16 @@ class QuizController extends BaseController
      */
     public function quizAction()
     {
+        /* @var $quiz \Row\Quiz */
+        $quiz = \Table\Quiz::getInstance()->find($this->getParam('id'))->current();
+        if (!$quiz) {
+            throw new Model\ShowableException('Brak quizu, proszę skorzystać z nawigacji');
+        }
 
+        $this->view->quiz = $quiz;
+        $this->view->pytania = $quiz->getPytania();
+
+        $this->addScript('/scripts/quiz/quiz');
     }
 
     /**

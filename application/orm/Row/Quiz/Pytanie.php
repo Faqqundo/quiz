@@ -29,5 +29,17 @@ use Zend_Db_Table_Row;
  */
 class Pytanie extends Zend_Db_Table_Row
 {
-    
+    /**
+     * Zwraca listę odpowiedzi na pytanie quizu
+     *
+     * @return Pytanie\Odpowiedz[]
+     */
+    public function getOdpowiedzi()
+    {
+        $odpowiedzi = \Table\Quiz\Pytania\Odpowiedzi::getInstance()->fetchAll(array(
+            'id_pytania = ?' => $this->id
+        ));
+
+        return $odpowiedzi;
+    }
 }
