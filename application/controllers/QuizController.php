@@ -65,6 +65,19 @@ class QuizController extends BaseController
      */
     public function wynikAction()
     {
+        /* @var $quiz \Row\Quiz */
+        $quiz = \Table\Quiz::getInstance()->find($this->getParam('id'))->current();
+        if (!$quiz) {
+            throw new Model\ShowableException('Brak quizu, proszę skorzystać z nawigacji');
+        }
 
+        $quizModel = Model\Quiz::getInstance();
+
+        $iloscPunktow = $quizModel->policzPunkty($quiz, $this->getParam('odpowiedz'));
+        $wynik = $quizModel->przydzielWynik($quiz, $iloscPunktow);
+
+        $this->view->quiz = $quiz;
+        $this->view->iloscPunktow = $iloscPunktow;
+        $this->view->wynik = $wynik;
     }
 }

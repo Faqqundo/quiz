@@ -3,28 +3,37 @@
 <p>Zapraszamy do rozwiązywania:)</p>
 
 <?php if ($this->pytania): ?>
-<div id="pytania">
-    <?php $lp=1; ?>
-    <?php foreach($this->pytania as $pytanie): ?>
-        <h3>Pytanie <?=$lp++?></h3>
-        <div>
-            <p><?=$pytanie->tresc?></p>
+<form method="post" action="/quiz/wynik/id/<?=$this->quiz->id?>" id="quiz-form">
+    <div id="pytania">
+        <?php $lp=1; ?>
+        <?php foreach($this->pytania as $pytanie): ?>
+            <h3>Pytanie <?=$lp++?></h3>
+            <div>
+                <p><?=$pytanie->tresc?></p>
 
-            <ol type="a">
-                <?php foreach($pytanie->getOdpowiedzi() as $odpowiedz): ?>
-                <li>
-                    <label>
-                        <input type="radio" name="odpowiedz[<?=$pytanie->id?>]"
-                               value="<?=$odpowiedz->id?>"
-                            />
-                        <?=$odpowiedz->tresc?>
-                    </label>
-                </li>
-                <?php endforeach; ?>
-            </ol>
+                <ol type="a">
+                    <?php foreach($pytanie->getOdpowiedzi() as $odpowiedz): ?>
+                    <li>
+                        <label>
+                            <input type="radio" name="odpowiedz[<?=$pytanie->id?>]"
+                                   value="<?=$odpowiedz->id?>"
+                                />
+                            <?=$odpowiedz->tresc?>
+                        </label>
+                    </li>
+                    <?php endforeach; ?>
+                </ol>
+            </div>
+        <?php endforeach; ?>
+
+        <h3>Gotowe</h3>
+        <div>
+            <p>Czy jesteś gotowy/a poznać wynik?</p>
+
+            <input type="submit" name="gotowe" value="Gotowe" />
         </div>
-    <?php endforeach; ?>
-</div>
+    </div>
+</form>
 <?php else: ?>
     <p>Quiz jest jeszcze pusty - myśliciele nie nadążają z robotą</p>
 <?php endif; ?>
