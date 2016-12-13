@@ -37,6 +37,9 @@ class Admin_QuizController extends Admin_BaseController
     public function listaAction()
     {
         $this->view->quizes = Table\Quiz::getInstance()->listaAktywnych();
+
+
+        $this->addScript('/scripts/admin/quiz/lista');
     }
 
 }
