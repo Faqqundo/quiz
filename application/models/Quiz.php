@@ -28,17 +28,6 @@ class Quiz
      */
     protected static $instance;
 
-    
-
-    /**
-     * Konstruktor zasadniczy
-     *
-     */
-    public function __construct()
-    {
-     
-    }
-
     /**
      * Zlicza punkty z odpowiedzi quizu, sprawdza czy nie było malwersacji
      *
@@ -94,7 +83,7 @@ class Quiz
         ), 'od desc');
 
         if (!$wynik) {
-            throw new Exception('Nieprawidłowo ułożone wyniki quizu - nie można przydzielić wyniku dla podanej liczby punktów');
+            throw new \Exception('Nieprawidłowo ułożone wyniki quizu - nie można przydzielić wyniku dla podanej liczby punktów');
         }
 
         return $wynik;
