@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    bootstrap="phpunit_Bootstrap.php"
+>
+    <filter>
+      <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">../application</directory>
+
+        <exclude>
+    <!--      <directory suffix=".php">/path/to/files</directory>
+          <file>/path/to/file</file>
+          -->
+        </exclude>
+      </whitelist>
+    </filter>
+</phpunit>
