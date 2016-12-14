@@ -14,10 +14,12 @@ php -S localhost:8080 -t document_root
 ##Testy jednostkowe:
 
 cd tests
+
 phpunit .
 
 
 ##Pokrycie kodu:
 
 cd tests
+
 phpunit --coverage-html ../docs
