@@ -13,13 +13,13 @@ php -S localhost:8080 -t document_root
 
 ##Testy jednostkowe:
 
-cd tests
+cd test
 
 phpunit .
 
 
 ##Pokrycie kodu:
 
-cd tests
+cd test
 
 phpunit --coverage-html ../docs
