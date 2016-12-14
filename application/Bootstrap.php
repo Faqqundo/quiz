@@ -62,12 +62,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
      * 
      * @return Zend_Db_Table_Abstract 
      */
-    protected function _initDb() {
-        $dbAdapter = Zend_Db::factory(new Zend_Config($this->getOption('db')));
+    protected function _initDbAdapter() {
+        $this->bootstrap('db');
         
-        Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
-        Zend_Registry::set('db_adapter', $dbAdapter);
-
+        $dbAdapter = $this->getPluginResource('db')->getDbAdapter();
         $dbAdapter->setFetchMode(Zend_Db::FETCH_OBJ);
 
         return $dbAdapter;
@@ -82,8 +80,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
     {
         $config = $this->getOption('auth');
 
+        $dbAdapter = $this->getPluginResource('db')->getDbAdapter();
+
         $authAdapter = new Zend_Auth_Adapter_DbTable(
-            Zend_Registry::get('db_adapter'), $config['table']['name'], $config['table']['user_column'],
+            $dbAdapter, $config['table']['name'], $config['table']['user_column'],
             $config['table']['pass_column'], $config['table']['pass_treatment']
         );
 
