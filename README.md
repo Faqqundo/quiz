@@ -22,4 +22,4 @@ phpunit .
 
 cd test
 
-phpunit --coverage-html ../docs
+phpunit --coverage-html ../docs .
