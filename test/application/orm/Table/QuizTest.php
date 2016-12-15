@@ -34,7 +34,7 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers \Table\Quiz::listaAktywnych()
      */
-    public function testListaAktywnychk() {
+    public function testListaAktywnych() {
         $lista = $this->object->listaAktywnych();
         
         $this->assertCount(1, $lista);
