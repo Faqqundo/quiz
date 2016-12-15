@@ -57,6 +57,8 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
         // druga tablica w linii to pary idPytania => idOdpowiedzi
 
         return array(
+            array(0, array()),
+
             array(1, array(1 => 1)),
             array(0, array(1 => 2)),
             array(0, array(1 => 3)),
@@ -144,6 +146,8 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
      * @covers Model\Quiz::getInstance
      */
     public function testGetInstance() {
+        QuizHelper::resetInstance();
+
         $quiz = Quiz::getInstance();
 
         $this->assertInstanceOf(Quiz::class, $this->object);
@@ -153,4 +157,10 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotSame($quiz, $this->object);
     }
 
+}
+
+class QuizHelper extends \Model\Quiz {
+    public static function resetInstance() {
+        static::$instance = null;
+    }
 }

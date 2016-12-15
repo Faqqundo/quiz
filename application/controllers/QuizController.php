@@ -49,8 +49,8 @@ class QuizController extends BaseController
     {
         /* @var $quiz \Row\Quiz */
         $quiz = \Table\Quiz::getInstance()->find($this->getParam('id'))->current();
-        if (!$quiz) {
-            throw new Model\ShowableException('Brak quizu, proszę skorzystać z nawigacji');
+        if (!$quiz || !$quiz->aktywny) {
+            throw new \Model\ShowableException('Brak quizu, proszę skorzystać z nawigacji');
         }
 
         $this->view->quiz = $quiz;
@@ -67,7 +67,7 @@ class QuizController extends BaseController
     {
         /* @var $quiz \Row\Quiz */
         $quiz = \Table\Quiz::getInstance()->find($this->getParam('id'))->current();
-        if (!$quiz) {
+        if (!$quiz || !$quiz->aktywny) {
             throw new Model\ShowableException('Brak quizu, proszę skorzystać z nawigacji');
         }
 

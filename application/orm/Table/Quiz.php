@@ -37,11 +37,11 @@ class Quiz extends Zend_Db_Table
      *
      */
     public function __construct()
-    {
+    {        
         parent::__construct(array(
             Zend_Db_Table::NAME => 'quiz',
             Zend_Db_Table::ROW_CLASS => '\Row\Quiz'
-        ));
+        ));        
     }
 
     /**

@@ -34,7 +34,7 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers \Table\Quiz::listaAktywnych()
      */
-    public function testPrzydzielWynik() {
+    public function testListaAktywnychk() {
         $lista = $this->object->listaAktywnych();
         
         $this->assertCount(1, $lista);
@@ -43,16 +43,25 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers \Table\Quiz::getInstance
+     * @covers Table\Quiz::getInstance
+     * @covers \Table\Quiz::__construct
      */
     public function testGetInstance() {
+        QuizHelper::resetInstance();
+
         $quiz = \Table\Quiz::getInstance();
 
         $this->assertInstanceOf(\Table\Quiz::class, $this->object);
         $this->assertInstanceOf(\Table\Quiz::class, $quiz);
 
         $this->assertSame($quiz, \Table\Quiz::getInstance());
-        $this->assertNotSame($quiz, $this->object);
+        $this->assertNotSame($quiz, $this->object);        
     }
 
+}
+
+class QuizHelper extends \Table\Quiz {
+    public static function resetInstance() {
+        static::$instance = null;
+    }
 }

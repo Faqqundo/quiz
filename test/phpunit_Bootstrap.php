@@ -1,7 +1,5 @@
 <?php
 
-ob_start();
-
 /**
  *  Punkt startowy aplikacji dla bootstrap
  *
@@ -29,7 +27,4 @@ require_once ROOT_PATH . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 
 
 $application = new Zend_Application(APPLICATION_ENV, APPLICATION_INI);
 
-$application->bootstrap()
-    ->run();
-
-flush();
+$application->bootstrap();
