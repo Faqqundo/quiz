@@ -122,6 +122,50 @@ class QuizTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * Sprawdzanie sytuacji wyjątkowej - dziwne dane
+     *
+     * @covers Model\Quiz::policzPunkty
+     * @expectedException \Exception
+     * @expectedExceptionMessageRegExp /błędnie przekazane id/
+     */
+    public function testPoliczPunktyWyjatkiE() {
+        $this->object->policzPunkty($this->quiz, array('eeee macarena', '!@#$%^&*()_+}{":<>?,./;\'[]\=-'));
+    }
+
+    /**
+     * Sprawdzanie sytuacji wyjątkowej - dziwne dane
+     *
+     * @covers Model\Quiz::policzPunkty
+     * @expectedException \Exception
+     * @expectedExceptionMessageRegExp /błędnie przekazane id/
+     */
+    public function testPoliczPunktyWyjatkiF() {
+        $this->object->policzPunkty($this->quiz, array('eeee macarena' => '!@#$%^&*()_+}{":<>?,./;\'[]\=-'));
+    }
+
+    /**
+     * Sprawdzanie sytuacji wyjątkowej - dziwne dane
+     *
+     * @covers Model\Quiz::policzPunkty
+     * @expectedException \TypeError
+     * @expectedExceptionMessageRegExp /must be of the type array/
+     */
+    public function testPoliczPunktyWyjatkiG() {
+        $this->object->policzPunkty($this->quiz, 'eeee macarena');
+    }
+
+    /**
+     * Sprawdzanie sytuacji wyjątkowej - dziwne dane
+     *
+     * @covers Model\Quiz::policzPunkty     
+     * @expectedException \TypeError
+     * @expectedExceptionMessageRegExp /must be of the type array/
+     */
+    public function testPoliczPunktyWyjatkiH() {
+        $this->object->policzPunkty($this->quiz, '!@#$%^&*()_+}{":<>?,./;\'[]\=-');
+    }
+
+    /**
      * @covers Model\Quiz::przydzielWynik
      */
     public function testPrzydzielWynik() {
